@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drifting Away</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 1;
+      font-size: 2rem;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: 2px solid white;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      background-color: rgba(255,255,255,0.2);
+      font-size: 1rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    a.btn:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="CSMTVideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="content">
+    <h1>Drift Away</h1>
+    <a href="iphoneUI.html" class="btn">Press Play</a>
+  </div>
+
+</body>
+</html>
