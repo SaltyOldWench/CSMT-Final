@@ -144,20 +144,20 @@
     <div class="chat-messages" id="chat">
       <div class="message-orange">
         <div class="message-sender">Me</div>
-        <div class="message-text">What's up?</div>
+        <div class="message-text">You tapped me? Not rlly into dl...</div>
         <div class="message-timestamp">10:01 AM</div>
       </div>
 
       <div class="message-blue">
         <div class="message-sender">dl</div>
-        <div class="message-text">Hey, I was wondering if you wanted to chill at my place? Saw your bio, I know you don't like older.</div>
+        <div class="message-text">Yeah sorry, I like to remain anonymous</div>
         <div class="message-timestamp">10:03 AM</div>
       </div>
     </div>
 
     <form class="chat-input-form" id="chatForm">
       <div class="input-wrapper">
-        <div class="ghost-text" id="ghostText">yeah sorry, just not into older.</div>
+        <div class="ghost-text" id="ghostText">yeah, well... good luck with that</div>
         <input type="text" class="chat-input" id="userInput" autocomplete="off" />
       </div>
       <button type="submit" class="send-button">Send</button>
@@ -167,24 +167,40 @@
   <script>
     const script = [
       {
-        expected: "yeah sorry, just not into older.",
-        bot: "I mean, would you be down if I gave you money?"
+        expected: "yeah, well... good luck with that",
+        bot: "Can I see more pics of you?"
       },
       {
-        expected: "what’s the catch?",
-        bot: "no catch. just vibes. See where it goes?"
+        expected: "brah what. no you wont even show face why would u ask that",
+        bot: "I mean I can share more of me, just not face"
       },
       {
-        expected: "how much are we talking about?",
-        bot: "how much would be reasonable to you"
+        expected: "why would I gaf about that, Im one google search away of looking at the same thing",
+        bot: "Aww cmon man, what if I gave you money?"
       },
       {
-        expected: "to chill? Just to chill Id say atleast 200 haha...",
-        bot: "Deal, Im down to spend more too..."
+        expected: "Why would I want money? Unless youre old or ugly that just seems weird...",
+        bot: "Well yeah, Im one of those haha"
       },
       {
-        expected: "Sure, wtv. Whats the addy?",
-        bot: "**** N Kotsner Ave"
+        expected: "Well that makes sense... im not taking anything less than 250 tho",
+        bot: "Damn thats a lot..."
+      },
+      {
+        expected: "okay well, goodluck then.",
+        bot: "what if I gave you a **** and 150?"
+      },
+      {
+        expected: "I already have someone for that sorry",
+        bot: "Damn. What about 200? and the ****"
+      },
+      {
+        expected: "Yk what, whatever... what you wanna do tho",
+        bot: "vanilla? Can I go to you"
+      },
+      {
+        expected: "Sure wtv",
+        bot: "Ok whats the addy then?"
       },
     ];
 
