@@ -58,10 +58,27 @@
     Your browser does not support the video tag.
   </video>
 
+  <audio id="bg-audio" loop hidden>
+    <source src="CSMTScreenAudio.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
+
   <div class="content">
     <h1>Drift Away</h1>
     <a href="iphoneUI.html" class="btn">Press Play</a>
   </div>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+
+    document.body.addEventListener('click', () => {
+      audio.play().catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
+    }, { once: true });
+  </script>
+
 
 </body>
 </html>
