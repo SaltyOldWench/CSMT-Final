@@ -158,11 +158,17 @@
 
     <form class="chat-input-form" id="chatForm">
       <div class="input-wrapper">
-        <div class="ghost-text" id="ghostText">Wbu, what your day looking like?</div>
+        <div class="ghost-text" id="ghostText">wbu</div>
         <input type="text" class="chat-input" id="userInput" autocomplete="off" />
       </div>
       <button type="submit" class="send-button">Send</button>
     </form>
+
+
+    <button id="nextPageBtn" class="send-button" style="display: none;" onclick="location.href='nice-guy2.html'">
+      Go to Next Page
+    </button>
+
   </div>
 
   <script>
@@ -234,6 +240,7 @@
       } else {
         input.disabled = true;
         ghost.textContent = "Chat ended.";
+        document.getElementById("nextPageBtn").style.display = "block";
       }
     }
 

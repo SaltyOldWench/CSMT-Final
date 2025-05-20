@@ -163,6 +163,13 @@
       </div>
       <button type="submit" class="send-button">Send</button>
     </form>
+
+
+    <button id="nextPageBtn" class="send-button" style="display: none;" onclick="location.href='smoke2.html'">
+      Go to Next Page
+    </button>
+
+
   </div>
 
   <script>
@@ -173,7 +180,7 @@
       },
       {
         expected: "well what do you look like?",
-        bot: "****"
+        bot: "**Sends Photo**"
       },
       {
         expected: "not rlly into, sorry.",
@@ -226,6 +233,7 @@
       } else {
         input.disabled = true;
         ghost.textContent = "Chat ended.";
+        document.getElementById("nextPageBtn").style.display = "block";
       }
     }
 
