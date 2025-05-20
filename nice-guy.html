@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Smoke??</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'VT323', monospace;
+      background: radial-gradient(circle at 15% 20%, #0e0e0e, #000);
+      color: #e0e0e0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+    }
+
+    .chat-container {
+      width: 520px;
+      background-color: #111;
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.8);
+    }
+
+    .chat-header {
+      font-size: 1.5rem;
+      font-family: 'Orbitron', monospace;
+      color: #bcbcbc;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: #333 #111;
+    }
+
+    .message-orange,
+    .message-blue {
+      padding: 12px 16px;
+      border-radius: 4px;
+      max-width: 80%;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      position: relative;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+    }
+
+    .message-orange {
+      align-self: flex-end;
+      color: #d6d6d6;
+    }
+
+    .message-blue {
+      align-self: flex-start;
+      color: #c2c2c2;
+    }
+
+    .message-sender {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #888;
+    }
+
+    .message-timestamp {
+      font-size: 0.7rem;
+      color: #555;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    .chat-input-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    .ghost-text {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #777;
+      pointer-events: none;
+      font-size: 1rem;
+      font-family: 'VT323', monospace;
+      user-select: none;
+    }
+
+    .chat-input {
+      width: 100%;
+      padding: 12px;
+      background-color: #0a0a0a;
+      color: #e8e8e8;
+      border: 1px solid #2a2a2a;
+      border-radius: 3px;
+      font-family: 'VT323', monospace;
+      font-size: 1rem;
+      background-clip: padding-box;
+    }
+
+    .send-button {
+      background-color: #222;
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 10px 16px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .send-button:hover {
+      background-color: #2e2e2e;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container">
+    <h2 class="chat-header">Nice Guy</h2>
+
+    <div class="chat-messages" id="chat">
+      <div class="message-blue">
+        <div class="message-sender">Nice Guy</div>
+        <div class="message-text">Hey, how's it going stud?</div>
+        <div class="message-timestamp">10:01 AM</div>
+      </div>
+
+      <div class="message-orange">
+        <div class="message-sender">me</div>
+        <div class="message-text">Im studying at the moment. I have a lot of work to do</div>
+        <div class="message-timestamp">10:03 AM</div>
+      </div>
+    </div>
+
+
+    <form class="chat-input-form" id="chatForm">
+      <div class="input-wrapper">
+        <div class="ghost-text" id="ghostText">Wbu, what your day looking like?</div>
+        <input type="text" class="chat-input" id="userInput" autocomplete="off" />
+      </div>
+      <button type="submit" class="send-button">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const script = [
+      {
+        expected: "Wbu, what your day looking like?",
+        bot: "Oh really? That must suck. I got off work too."
+      },
+      {
+        expected: "Nice, hope you get a nice relaxing evening then.",
+        bot: "Yes, I hope you get a lil break from studying."
+      },
+      {
+        expected: "Nah unfortnuately I wont be done until this essay gets finished.",
+        bot: "Oh, have you ate yet though?"
+      },
+      {
+        expected: "No, dining halls are closed atm and I can't afford to spend time going to get sumn to eat.",
+        bot: "Is there anything I can do to help? Can I order/deliver you some food?"
+      },
+      {
+        expected: "Lol do you want to deliver food to me?",
+        bot: "Yes! Anything you want promise."
+      },
+      {
+        expected: "Oh well, I can't give out my dorm adress haha sorry",
+        bot: "What about apple cash? Can I send you money there, you order something?"
+      },
+      {
+        expected: "Sure, my number is 312-XXX-XXXX",
+        bot: "Awesome!"
+      },
+      {
+        expected: "Wow you sent a lot of money haha, I was just going to order a snack from dunking or something.",
+        bot: "Dont worry about it haha, get yourself something to fill you up."
+      },
+      {
+        expected: "Thank you, I will.",
+        bot: "Of course, if you ever need anything just let me know okay?"
+      },
+      {
+        expected: "Haha, sure.",
+        bot: "Im being serious, anything... just hit me up."
+      }
+
+    ];
+
+    let step = 0;
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("userInput");
+    const ghost = document.getElementById("ghostText");
+    const form = document.getElementById("chatForm");
+
+    function addMessage(text, sender = "Me", color = "orange") {
+      const message = document.createElement("div");
+      message.className = `message-${color}`;
+      message.innerHTML = `
+        <div class="message-sender">${sender}</div>
+        <div class="message-text">${text}</div>
+        <div class="message-timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+      `;
+      chat.appendChild(message);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function updateGhostText() {
+      if (step < script.length) {
+        ghost.textContent = script[step].expected;
+      } else {
+        input.disabled = true;
+        ghost.textContent = "Chat ended.";
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const typed = input.value.trim();
+      if (typed === "") return;
+
+      addMessage(typed, "Me", "orange");
+
+      setTimeout(() => {
+        if (step < script.length) {
+          addMessage(script[step].bot, "gen daddy", "blue");
+          step++;
+          updateGhostText();
+        } else {
+          ghost.textContent = "Chat ended.";
+          input.disabled = true;
+        }
+      }, 500);
+
+      input.value = "";
+    });
+
+    updateGhostText();
+  </script>
+
+</body>
+</html>
